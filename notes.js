@@ -29,19 +29,33 @@ let addNote = function (title, body) {
     }
     
 }
+
+let removeNote = ( title ) => {
+    let notes = fetchNotes();
+    //fetch notes
+    let filteredNotes = notes.filter((note) => note.title !== title);
+    //filter notes, remove the one with the title argument
+    saveNotes(filteredNotes);
+    //save the new notes array
+
+    return notes.length !== filteredNotes.length;
+}
 let getAll = function () {
     console.log('Getting all the notes');
 }
-let getNote = function (title) {
-    console.log('Getting note:', title);
+let getNote = (title) => {
+    //fetch the notes
+    let notes = fetchNotes();
+    //use filter find the one we want
+    let filteredNote = notes.filter((note) => note.title === title);
+    //access the first element in that array
+    return filteredNote[0];
 }
-let deleteNote = function (title) {
-    console.log('Deleting note:', title);
-}
+
 
 module.exports = {
     addNote,
     getAll,
     getNote,
-    deleteNote
+    removeNote
 }
