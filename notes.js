@@ -15,20 +15,20 @@ let saveNotes = (someNotes) => {
     fs.writeFileSync('notes-data.json', JSON.stringify(someNotes));
 }
 
-let addNote = function (title, body) {
-    let notes = fetchNotes();
-    let note = {
-        title,
-        body
+var addNote = (title, body) => {
+    var notes = fetchNotes();
+    var note = {
+      title,
+      body
     };
-    
-    let duplicateNotes = notes.filter((note) => note.title === title);
-    if ( duplicateNotes.length === 0) {
-        notes.push(note);
-        saveNotes(notes);
+    var duplicateNotes = notes.filter((note) => note.title === title);
+  
+    if (duplicateNotes.length === 0) {
+      notes.push(note);
+      saveNotes(notes);
+      return note;
     }
-    
-}
+  };
 
 let removeNote = ( title ) => {
     let notes = fetchNotes();
